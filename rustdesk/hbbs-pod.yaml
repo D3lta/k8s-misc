@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: hbbs
+  name: hbbs
+  namespace: rustdesk-namespace
+spec:
+  containers:
+    - name: hbbs
+      image: rustdesk/rustdesk-server:latest
+      imagePullPolicy: IfNotPresent
+      command: ["hbbs"]
+      args:
+        - -r
+        - localhost:21117
+#        - -k _
+      ports:
+        - containerPort: 21115
+        - containerPort: 21116
+        - containerPort: 21116
+          protocol: UDP
+        - containerPort: 21118
+      volumeMounts:
+        - mountPath: /root
+          name: rustdesk-pvc
+  volumes:
+    - name: rustdesk-pvc
+      persistentVolumeClaim:
+        claimName: rustdesk-pvc-claim
