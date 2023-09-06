@@ -11,15 +11,13 @@ spec:
       image: rustdesk/rustdesk-server:latest
       imagePullPolicy: IfNotPresent
       command: ["hbbr"]
-#      args:
-#        - -k _
       ports:
         - containerPort: 21117
         - containerPort: 21119
       volumeMounts:
         - mountPath: /root
-          name: hbbs-pvc
+          name: rustdesk-pvc
   volumes:
-    - name: hbbs-pvc
+    - name: rustdesk-pvc
       persistentVolumeClaim:
-        claimName: hbbs-pvc-claim
+        claimName: rustdesk-pvc-claim

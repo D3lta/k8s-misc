@@ -14,7 +14,6 @@ spec:
       args:
         - -r
         - localhost:21117
-#        - -k _
       ports:
         - containerPort: 21115
         - containerPort: 21116
